@@ -1,0 +1,337 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		766D967516D079EC00E63A4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 766D967416D079EC00E63A4D /* UIKit.framework */; };
+		766D967716D079EC00E63A4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 766D967616D079EC00E63A4D /* Foundation.framework */; };
+		766D967916D079EC00E63A4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 766D967816D079EC00E63A4D /* CoreGraphics.framework */; };
+		766D967F16D079EC00E63A4D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 766D967D16D079EC00E63A4D /* InfoPlist.strings */; };
+		766D968116D079ED00E63A4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 766D968016D079EC00E63A4D /* main.m */; };
+		766D968516D079ED00E63A4D /* V8AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 766D968416D079ED00E63A4D /* V8AppDelegate.m */; };
+		766D968716D079ED00E63A4D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 766D968616D079ED00E63A4D /* Default.png */; };
+		766D968916D079ED00E63A4D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 766D968816D079ED00E63A4D /* Default@2x.png */; };
+		766D968B16D079ED00E63A4D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 766D968A16D079ED00E63A4D /* Default-568h@2x.png */; };
+		766D968E16D079ED00E63A4D /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 766D968C16D079ED00E63A4D /* MainStoryboard_iPhone.storyboard */; };
+		766D969116D079ED00E63A4D /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 766D968F16D079ED00E63A4D /* MainStoryboard_iPad.storyboard */; };
+		766D969416D079ED00E63A4D /* V8ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766D969316D079ED00E63A4D /* V8ViewController.m */; };
+		766D969C16D07B2700E63A4D /* V8SimpleBarGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 766D969B16D07B2700E63A4D /* V8SimpleBarGraphView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		766D967116D079EC00E63A4D /* V8SimpleBarGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V8SimpleBarGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		766D967416D079EC00E63A4D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		766D967616D079EC00E63A4D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		766D967816D079EC00E63A4D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		766D967C16D079EC00E63A4D /* V8SimpleBarGraph-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "V8SimpleBarGraph-Info.plist"; sourceTree = "<group>"; };
+		766D967E16D079EC00E63A4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		766D968016D079EC00E63A4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		766D968216D079ED00E63A4D /* V8SimpleBarGraph-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "V8SimpleBarGraph-Prefix.pch"; sourceTree = "<group>"; };
+		766D968316D079ED00E63A4D /* V8AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = V8AppDelegate.h; sourceTree = "<group>"; };
+		766D968416D079ED00E63A4D /* V8AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = V8AppDelegate.m; sourceTree = "<group>"; };
+		766D968616D079ED00E63A4D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		766D968816D079ED00E63A4D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		766D968A16D079ED00E63A4D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		766D968D16D079ED00E63A4D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		766D969016D079ED00E63A4D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		766D969216D079ED00E63A4D /* V8ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = V8ViewController.h; sourceTree = "<group>"; };
+		766D969316D079ED00E63A4D /* V8ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = V8ViewController.m; sourceTree = "<group>"; };
+		766D969A16D07B2700E63A4D /* V8SimpleBarGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = V8SimpleBarGraphView.h; path = ../../V8SimpleBarGraphView.h; sourceTree = "<group>"; };
+		766D969B16D07B2700E63A4D /* V8SimpleBarGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = V8SimpleBarGraphView.m; path = ../../V8SimpleBarGraphView.m; sourceTree = "<group>"; };
+		766D969F16D07FB400E63A4D /* V8SimpleBarGraphViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = V8SimpleBarGraphViewProtocol.h; path = ../../V8SimpleBarGraphViewProtocol.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		766D966E16D079EC00E63A4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766D967516D079EC00E63A4D /* UIKit.framework in Frameworks */,
+				766D967716D079EC00E63A4D /* Foundation.framework in Frameworks */,
+				766D967916D079EC00E63A4D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		766D966816D079EC00E63A4D = {
+			isa = PBXGroup;
+			children = (
+				766D967A16D079EC00E63A4D /* V8SimpleBarGraph */,
+				766D967316D079EC00E63A4D /* Frameworks */,
+				766D967216D079EC00E63A4D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		766D967216D079EC00E63A4D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				766D967116D079EC00E63A4D /* V8SimpleBarGraph.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		766D967316D079EC00E63A4D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				766D967416D079EC00E63A4D /* UIKit.framework */,
+				766D967616D079EC00E63A4D /* Foundation.framework */,
+				766D967816D079EC00E63A4D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		766D967A16D079EC00E63A4D /* V8SimpleBarGraph */ = {
+			isa = PBXGroup;
+			children = (
+				766D969D16D07F5700E63A4D /* Graph Files */,
+				766D968316D079ED00E63A4D /* V8AppDelegate.h */,
+				766D968416D079ED00E63A4D /* V8AppDelegate.m */,
+				766D969216D079ED00E63A4D /* V8ViewController.h */,
+				766D969316D079ED00E63A4D /* V8ViewController.m */,
+				766D968C16D079ED00E63A4D /* MainStoryboard_iPhone.storyboard */,
+				766D968F16D079ED00E63A4D /* MainStoryboard_iPad.storyboard */,
+				766D967B16D079EC00E63A4D /* Supporting Files */,
+			);
+			path = V8SimpleBarGraph;
+			sourceTree = "<group>";
+		};
+		766D967B16D079EC00E63A4D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				766D967C16D079EC00E63A4D /* V8SimpleBarGraph-Info.plist */,
+				766D967D16D079EC00E63A4D /* InfoPlist.strings */,
+				766D968016D079EC00E63A4D /* main.m */,
+				766D968216D079ED00E63A4D /* V8SimpleBarGraph-Prefix.pch */,
+				766D968616D079ED00E63A4D /* Default.png */,
+				766D968816D079ED00E63A4D /* Default@2x.png */,
+				766D968A16D079ED00E63A4D /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		766D969D16D07F5700E63A4D /* Graph Files */ = {
+			isa = PBXGroup;
+			children = (
+				766D969A16D07B2700E63A4D /* V8SimpleBarGraphView.h */,
+				766D969B16D07B2700E63A4D /* V8SimpleBarGraphView.m */,
+				766D969F16D07FB400E63A4D /* V8SimpleBarGraphViewProtocol.h */,
+			);
+			name = "Graph Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		766D967016D079EC00E63A4D /* V8SimpleBarGraph */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 766D969716D079ED00E63A4D /* Build configuration list for PBXNativeTarget "V8SimpleBarGraph" */;
+			buildPhases = (
+				766D966D16D079EC00E63A4D /* Sources */,
+				766D966E16D079EC00E63A4D /* Frameworks */,
+				766D966F16D079EC00E63A4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = V8SimpleBarGraph;
+			productName = V8SimpleBarGraph;
+			productReference = 766D967116D079EC00E63A4D /* V8SimpleBarGraph.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		766D966916D079EC00E63A4D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = V8;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Shawn Veader";
+			};
+			buildConfigurationList = 766D966C16D079EC00E63A4D /* Build configuration list for PBXProject "V8SimpleBarGraph" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 766D966816D079EC00E63A4D;
+			productRefGroup = 766D967216D079EC00E63A4D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				766D967016D079EC00E63A4D /* V8SimpleBarGraph */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		766D966F16D079EC00E63A4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766D967F16D079EC00E63A4D /* InfoPlist.strings in Resources */,
+				766D968716D079ED00E63A4D /* Default.png in Resources */,
+				766D968916D079ED00E63A4D /* Default@2x.png in Resources */,
+				766D968B16D079ED00E63A4D /* Default-568h@2x.png in Resources */,
+				766D968E16D079ED00E63A4D /* MainStoryboard_iPhone.storyboard in Resources */,
+				766D969116D079ED00E63A4D /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		766D966D16D079EC00E63A4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				766D968116D079ED00E63A4D /* main.m in Sources */,
+				766D968516D079ED00E63A4D /* V8AppDelegate.m in Sources */,
+				766D969416D079ED00E63A4D /* V8ViewController.m in Sources */,
+				766D969C16D07B2700E63A4D /* V8SimpleBarGraphView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		766D967D16D079EC00E63A4D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				766D967E16D079EC00E63A4D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		766D968C16D079ED00E63A4D /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				766D968D16D079ED00E63A4D /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		766D968F16D079ED00E63A4D /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				766D969016D079ED00E63A4D /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		766D969516D079ED00E63A4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		766D969616D079ED00E63A4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		766D969816D079ED00E63A4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "V8SimpleBarGraph/V8SimpleBarGraph-Prefix.pch";
+				INFOPLIST_FILE = "V8SimpleBarGraph/V8SimpleBarGraph-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		766D969916D079ED00E63A4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "V8SimpleBarGraph/V8SimpleBarGraph-Prefix.pch";
+				INFOPLIST_FILE = "V8SimpleBarGraph/V8SimpleBarGraph-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		766D966C16D079EC00E63A4D /* Build configuration list for PBXProject "V8SimpleBarGraph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				766D969516D079ED00E63A4D /* Debug */,
+				766D969616D079ED00E63A4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		766D969716D079ED00E63A4D /* Build configuration list for PBXNativeTarget "V8SimpleBarGraph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				766D969816D079ED00E63A4D /* Debug */,
+				766D969916D079ED00E63A4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 766D966916D079EC00E63A4D /* Project object */;
+}
