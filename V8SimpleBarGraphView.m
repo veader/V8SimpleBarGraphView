@@ -69,14 +69,10 @@
 						options:UIViewAnimationOptionCurveLinear
 					 animations:^{
 						 UIView *barView = nil;
-						 CGRect newFrame = CGRectZero;
 						 for (int i = 0; i < [self.barValues count]; i++) {
 							 barView = [self viewWithTag:[self tagForBarAtIndex:i]];
 							 if (barView) {
-								 newFrame = [self frameForBarAtIndex:i];
-								 [self logFrame:barView.frame withName:[NSString stringWithFormat:@"Bar:%i (current)", i]];
-								 [self logFrame:newFrame withName:[NSString stringWithFormat:@"Bar:%i (new)", i]];
-								 barView.frame = newFrame;
+								 barView.frame = [self frameForBarAtIndex:i];
 							 }
 						 }
 					 }
@@ -186,18 +182,6 @@
 	} else {
 		self.maxBarValue = 0;
 	}
-
-//	NSArray *sortedArray = [self.barValues sortedArrayUsingComparator:^(id obj1, id obj2) {
-//		// barValues should be an array of NSNumbers
-//		if ([obj1 integerValue] > [obj2 integerValue]) {
-//			return (NSComparisonResult)NSOrderedDescending;
-//		}
-//		if ([obj1 integerValue] < [obj2 integerValue]) {
-//			return (NSComparisonResult)NSOrderedAscending;
-//		}
-//		return (NSComparisonResult)NSOrderedSame;
-//	}];
-//	self.maxBarValue = [(NSNumber *)[sortedArray lastObject] integerValue];
 }
 
 - (void)determineBarWidth {
@@ -233,11 +217,6 @@
 
 - (CGFloat)xOriginForBarAtIndex:(NSUInteger)index {
 	return (self.barWidth * index) + (self.paddingBetweenBars * index) + self.paddingLeft;
-}
-
-- (void)logFrame:(CGRect)barFrame withName:(NSString *)name {
-	NSLog(@"Frame (%@) x:%f y:%f w:%f h:%f",
-		  name, barFrame.origin.x, barFrame.origin.y, barFrame.size.width, barFrame.size.height);
 }
 
 @end
