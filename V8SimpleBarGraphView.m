@@ -18,7 +18,6 @@
 @property (nonatomic, assign) CGFloat barWidth;
 
 @property (nonatomic, assign) BOOL barCountDetermined;
-@property (nonatomic, assign) BOOL defaultsHaveBeenSet;
 
 @end
 
@@ -33,6 +32,14 @@
 		[self setDefaults];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)theCoder {
+	self = [super initWithCoder:theCoder];
+	if (self) {
+		[self setDefaults];
+	}
+	return self;
 }
 
 - (void)dealloc {
@@ -105,9 +112,6 @@
 }
 
 - (void)collectData {
-	if (!self.defaultsHaveBeenSet) {
-		[self setDefaults];
-	}
 	self.barCountDetermined = NO;
 	
 	if (!self.barValues) {
@@ -134,7 +138,6 @@
 	self.barValues = [NSMutableArray array];
 	
 	self.barCountDetermined = NO;
-	self.defaultsHaveBeenSet = YES;
 	
 	self.paddingBetweenBars = 2.0f;
 	self.paddingTop = 5.0f;
@@ -144,8 +147,6 @@
 	
 	self.barColor = [UIColor grayColor];
 	self.selectedBarColor = [UIColor redColor];
-
-	self.defaultsHaveBeenSet = YES;
 }
 
 #pragma mark - Data Source Methods
