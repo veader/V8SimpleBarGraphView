@@ -17,7 +17,8 @@
 
 @protocol V8SimpleBarGraphViewDelegate <NSObject>
 @optional
-- (void)simpleBarGraphView:(V8SimpleBarGraphView *)graphView didHoverOnIndex:(NSInteger)index;
+- (void)simpleBarGraphView:(V8SimpleBarGraphView *)graphView didHoverOnIndex:(NSUInteger)index;
+- (void)simpleBarGraphView:(V8SimpleBarGraphView *)graphView didTapOnIndex:(NSUInteger)index;
 - (UIColor *)colorForBarInSimpleGraphView:(V8SimpleBarGraphView *)graphView atIndex:(NSUInteger)index;
 
 // @required
