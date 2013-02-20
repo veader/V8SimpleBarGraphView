@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -12,24 +12,35 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vJh-xX-EN7" userLabel="Graph" customClass="V8SimpleBarGraphView">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" id="vJh-xX-EN7" userLabel="Graph" customClass="V8SimpleBarGraphView">
+                                <rect key="frame" x="20" y="20" width="280" height="249"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="2" id="VjH-xy-DHL"/>
                                     <outlet property="delegate" destination="2" id="PqD-OU-jSH"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hJt-qu-Nku">
+                                <rect key="frame" x="20" y="289" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="▲" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9qL-Xw-s1x">
+                                <rect key="frame" x="13" y="268" width="17" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="vJh-xX-EN7" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="CBK-a0-mns"/>
-                            <constraint firstItem="vJh-xX-EN7" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="KYK-se-CeO"/>
-                            <constraint firstAttribute="bottom" secondItem="vJh-xX-EN7" secondAttribute="bottom" constant="279" id="Tlc-EV-XHj"/>
-                            <constraint firstAttribute="trailing" secondItem="vJh-xX-EN7" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="hGl-Da-hkx"/>
-                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="arrowLabel" destination="9qL-Xw-s1x" id="SPF-J6-WAv"/>
                         <outlet property="graphView" destination="vJh-xX-EN7" id="9dA-Zf-diu"/>
+                        <outlet property="indexLabel" destination="hJt-qu-Nku" id="prB-Gv-wEl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -37,9 +48,6 @@
         </scene>
     </scenes>
     <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
         <class className="V8SimpleBarGraphView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/V8SimpleBarGraphView.h"/>
             <relationships>
@@ -50,7 +58,9 @@
         <class className="V8ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/V8ViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="arrowLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="graphView" candidateClass="V8SimpleBarGraphView"/>
+                <relationship kind="outlet" name="indexLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
     </classes>

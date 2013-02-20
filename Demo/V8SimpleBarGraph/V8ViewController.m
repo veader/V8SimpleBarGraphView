@@ -20,7 +20,7 @@
 	[self.graphView reloadData];
 	self.graphView.backgroundColor = [UIColor lightGrayColor];
 
-	[NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(shuffleAndReload) userInfo:nil repeats:YES];
+	[NSTimer scheduledTimerWithTimeInterval:4.0f target:self selector:@selector(shuffleAndReload) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +60,16 @@
 	} else {
 		return [UIColor grayColor];
 	}
+}
+
+- (void)simpleBarGraphView:(V8SimpleBarGraphView *)graphView didHoverOnIndex:(NSUInteger)index {
+//	NSLog(@"Hover %d", index);
+	self.indexLabel.text = [NSString stringWithFormat:@"Touching index: %d", index];
+	CGPoint barCenter = [self.graphView centerOfBarAtIndex:index];
+	barCenter.x = barCenter.x + self.graphView.frame.origin.x;
+	[UIView animateWithDuration:0.1 animations:^{
+		self.arrowLabel.center = barCenter;
+	}];
 }
 
 @end

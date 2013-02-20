@@ -19,6 +19,8 @@
 
 @property (nonatomic, assign) BOOL barCountDetermined;
 
+@property (nonatomic, strong) UITouch *trackedTouch;
+
 @end
 
 
@@ -147,6 +149,8 @@
 	
 	self.barColor = [UIColor grayColor];
 	self.selectedBarColor = [UIColor redColor];
+	
+	self.currentlySelectedIndex = -1;
 }
 
 #pragma mark - Data Source Methods
@@ -175,6 +179,13 @@
 	}
 	return self.barColor;
 }
+
+- (void)notifyDelegateOfTouchAtIndex:(NSUInteger)index {
+	if (self.delegate && [self.delegate respondsToSelector:@selector(simpleBarGraphView:didHoverOnIndex:)]) {
+		[self.delegate simpleBarGraphView:self didHoverOnIndex:index];
+	}
+}
+
 
 #pragma mark - Calculation Methods
 - (void)determineMaximumBarValue {
@@ -218,6 +229,98 @@
 
 - (CGFloat)xOriginForBarAtIndex:(NSUInteger)index {
 	return (self.barWidth * index) + (self.paddingBetweenBars * index) + self.paddingLeft;
+}
+
+- (CGPoint)centerOfBarAtIndex:(NSUInteger)index {
+	CGRect barFrame = [self frameForBarAtIndex:index];
+	return CGPointMake((barFrame.origin.x + (self.barWidth / 2.0f)), self.frame.origin.y + self.frame.size.height);
+}
+
+#pragma mark - Touches Methods
+- (void)handleTouchEvent {
+	if (self.trackedTouch) {
+		CGPoint location = [self.trackedTouch locationInView:self];
+//		NSLog(@"Location: %f, %f", location.x, location.y);
+		NSInteger touchedIndex = [self determineIndexOfBarUnderPoint:location];
+		if (self.currentlySelectedIndex != touchedIndex && touchedIndex != -1) {
+			self.currentlySelectedIndex = touchedIndex;
+			[self notifyDelegateOfTouchAtIndex:self.currentlySelectedIndex];
+
+			// set selected status
+		}
+	} else {
+		self.currentlySelectedIndex = -1;
+	}
+}
+
+- (NSInteger)determineIndexOfBarUnderPoint:(CGPoint)point {
+	NSInteger index = -1;
+	UIView *barView = nil;
+	CGRect barFrame = CGRectZero;
+	for (int i = 0; i < [self.barValues count]; i++) {
+		barView = [self viewWithTag:[self tagForBarAtIndex:i]];
+		if (barView) {
+			// create slice of entire view so it's easier to scrub across graph
+			barFrame = barView.frame;
+			barFrame.origin.y = 0.0f;
+			barFrame.size.height = self.bounds.size.height;
+			if (CGRectContainsPoint(barFrame, point)) {
+				index = i;
+				break;
+			}
+		}
+	}
+	return index;
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//	NSLog(@"TOUCH: Began %d", [touches count]);
+	if (!self.trackedTouch && [touches count] > 0) {
+//		NSLog(@"\tStart tracking touch");
+		// only bother to start tracking, if we're not already tracking
+		self.trackedTouch = [[touches allObjects] objectAtIndex:0];
+		[self handleTouchEvent];
+	} else {
+//		NSLog(@"\tAlready tracking touch");
+	}
+	[super touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+//	NSLog(@"TOUCH: Move... %d", [touches count]);
+	if (self.trackedTouch && [touches containsObject:self.trackedTouch]) {
+//		NSLog(@"\tHas our touch...");
+		[self handleTouchEvent];
+	} else {
+//		NSLog(@"\tDifferent touch");
+	}
+	[super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+//	NSLog(@"TOUCH: Cancel %d", [touches count]);
+	if (self.trackedTouch && [touches containsObject:self.trackedTouch]) {
+//		NSLog(@"\tCancel our touch");
+		self.trackedTouch = nil;
+		[self handleTouchEvent];
+	} else {
+//		NSLog(@"\tNOT our touch");
+	}
+	[super touchesCancelled:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+//	NSLog(@"TOUCH: End %d", [touches count]);
+	if (self.trackedTouch && [touches containsObject:self.trackedTouch]) {
+//		NSLog(@"\tEnd our touch");
+		self.trackedTouch = nil;
+		// TODO: handle tap?
+		[self handleTouchEvent];
+	} else {
+//		NSLog(@"\tNOT our touch");
+		}
+	[super touchesEnded:touches withEvent:event];
 }
 
 @end

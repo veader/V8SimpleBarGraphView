@@ -15,5 +15,7 @@
 
 @property (nonatomic, strong) NSArray *barValues;
 @property (nonatomic, strong) IBOutlet V8SimpleBarGraphView *graphView;
+@property (nonatomic, strong) IBOutlet UILabel *indexLabel;
+@property (nonatomic, strong) IBOutlet UILabel *arrowLabel;
 
 @end

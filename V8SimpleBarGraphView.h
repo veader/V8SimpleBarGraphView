@@ -26,8 +26,13 @@
 @property (nonatomic, strong) UIColor *barColor;
 @property (nonatomic, strong) UIColor *selectedBarColor;
 
-// TODO: track selection/hover point/index
+// our currently selected index (-1 if nothing is selected)
+@property (nonatomic, assign) NSInteger currentlySelectedIndex;
 
+// cause graph to reload from data source
 - (void)reloadData;
+
+// get a point that represents the center of the bar at the given index, relative to the graph frame
+- (CGPoint)centerOfBarAtIndex:(NSUInteger)index;
 
 @end
