@@ -20,18 +20,25 @@
                                     <outlet property="delegate" destination="2" id="PqD-OU-jSH"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hJt-qu-Nku">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Touched Index: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hJt-qu-Nku">
                                 <rect key="frame" x="20" y="289" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="▲" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9qL-Xw-s1x">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" text="▲" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9qL-Xw-s1x">
                                 <rect key="frame" x="13" y="268" width="17" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VsD-Md-FFP">
+                                <rect key="frame" x="20" y="318" width="54" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -41,6 +48,7 @@
                         <outlet property="arrowLabel" destination="9qL-Xw-s1x" id="SPF-J6-WAv"/>
                         <outlet property="graphView" destination="vJh-xX-EN7" id="9dA-Zf-diu"/>
                         <outlet property="indexLabel" destination="hJt-qu-Nku" id="prB-Gv-wEl"/>
+                        <outlet property="valueLabel" destination="VsD-Md-FFP" id="zKD-N3-SNY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -61,6 +69,7 @@
                 <relationship kind="outlet" name="arrowLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="graphView" candidateClass="V8SimpleBarGraphView"/>
                 <relationship kind="outlet" name="indexLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="valueLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
     </classes>

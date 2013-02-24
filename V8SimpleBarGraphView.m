@@ -76,7 +76,7 @@
 	// now animate the bars to proper height
 	[UIView animateWithDuration:0.2f
 						  delay:0.1f
-						options:UIViewAnimationOptionCurveLinear
+						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:^{
 						 UIView *barView = nil;
 						 for (int i = 0; i < [self.barValues count]; i++) {
@@ -118,15 +118,15 @@
 	if (!self.gatheringData) {
 		self.gatheringData = YES;
 		self.barCountDetermined = NO;
-		
+
 		if (!self.barValues) {
 			self.barValues = [NSMutableArray array];
 		}
-		
+
 		[self getNumberOfBarsFromDataSource];
 		[self getBarValuesFromDataSource];
 		[self determineMaximumBarValue];
-				
+
 		self.barCountDetermined = YES;
 		self.gatheringData = NO;
 		[self setNeedsLayout];
@@ -154,7 +154,7 @@
 	self.paddingBottom = 5.0f;
 	
 	self.barColor = [UIColor grayColor];
-	self.selectedBarColor = [UIColor redColor];
+	self.selectedBarColor = nil;
 	
 	self.currentlySelectedIndex = -1;
 }
@@ -183,7 +183,12 @@
 	if (self.delegate && [self.delegate respondsToSelector:@selector(colorForBarInSimpleGraphView:atIndex:)]) {
 		return [self.delegate colorForBarInSimpleGraphView:self atIndex:index];
 	}
-	return self.barColor;
+
+	if (index == self.currentlySelectedIndex && self.selectedBarColor) {
+		return self.selectedBarColor;
+	} else {
+		return self.barColor;
+	}
 }
 
 - (void)notifyDelegateOfTouchAtIndex:(NSUInteger)index {
@@ -212,7 +217,7 @@
 	}
 }
 
-- (CGFloat)heightForItemAtIndex:(NSUInteger)index {
+- (CGFloat)heightForBarAtIndex:(NSUInteger)index {
 	if ([self.barValues count] > index && self.maxBarValue > 0) {
 		NSInteger value = [[self.barValues objectAtIndex:index] integerValue];
 		CGFloat percentage = (float)value / (float)self.maxBarValue;
@@ -224,7 +229,7 @@
 }
 
 - (CGRect)frameForBarAtIndex:(NSUInteger)index {
-	CGFloat height = [self heightForItemAtIndex:index];
+	CGFloat height = [self heightForBarAtIndex:index];
 	CGFloat y = self.bounds.size.height - self.paddingBottom - height;
 	return CGRectMake([self xOriginForBarAtIndex:index], y, self.barWidth, height);
 }
@@ -246,17 +251,26 @@
 - (void)handleTouchEvent {
 	if (self.trackedTouch) {
 		CGPoint location = [self.trackedTouch locationInView:self];
-//		NSLog(@"Location: %f, %f", location.x, location.y);
 		NSInteger touchedIndex = [self determineIndexOfBarUnderPoint:location];
 		if (self.currentlySelectedIndex != touchedIndex && touchedIndex != -1) {
+			UIView *barView = nil;
+			NSInteger oldIndex = self.currentlySelectedIndex;
 			self.currentlySelectedIndex = touchedIndex;
-			[self notifyDelegateOfTouchAtIndex:self.currentlySelectedIndex];
 
-			// set selected status
+			if (oldIndex != -1) {
+				// set color back on previously touched bar
+				barView = [self viewWithTag:[self tagForBarAtIndex:oldIndex]];
+				barView.backgroundColor = [self getColorForBarAtIndex:oldIndex];
+			}
+
+			// set selected color on current bar
+			barView = [self viewWithTag:[self tagForBarAtIndex:self.currentlySelectedIndex]];
+			barView.backgroundColor = [self getColorForBarAtIndex:self.currentlySelectedIndex];
+
+			[self notifyDelegateOfTouchAtIndex:self.currentlySelectedIndex];
 		}
-	} else {
-		self.currentlySelectedIndex = -1;
 	}
+	[self setNeedsDisplay];
 }
 
 - (NSInteger)determineIndexOfBarUnderPoint:(CGPoint)point {

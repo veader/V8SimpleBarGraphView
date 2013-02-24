@@ -32,7 +32,9 @@
 // cause graph to reload from data source
 - (void)reloadData;
 
-// get a point that represents the center of the bar at the given index, relative to the graph frame
+// get a point that represents the center of the bar at the given index (relative to the graph frame)
 - (CGPoint)centerOfBarAtIndex:(NSUInteger)index;
+// get the height of the bar at a given index
+- (CGFloat)heightForBarAtIndex:(NSUInteger)index;
 
 @end

@@ -19,6 +19,7 @@
 	self.barValues = @[@4, @20, @5, @10, @23, @14, @7, @2, @0, @13];
 	[self.graphView reloadData];
 	self.graphView.backgroundColor = [UIColor lightGrayColor];
+	self.graphView.selectedBarColor = [UIColor yellowColor];
 
 	[NSTimer scheduledTimerWithTimeInterval:4.0f target:self selector:@selector(shuffleAndReload) userInfo:nil repeats:YES];
 }
@@ -50,6 +51,7 @@
 }
 
 #pragma mark - Delegate Methods
+/*
 - (UIColor *)colorForBarInSimpleGraphView:(V8SimpleBarGraphView *)graphView atIndex:(NSUInteger)index {
 	if (fmod(index, 2) != 0) {
 		return [UIColor redColor];
@@ -61,14 +63,29 @@
 		return [UIColor grayColor];
 	}
 }
+ */
 
 - (void)simpleBarGraphView:(V8SimpleBarGraphView *)graphView didHoverOnIndex:(NSUInteger)index {
 //	NSLog(@"Hover %d", index);
 	self.indexLabel.text = [NSString stringWithFormat:@"Touching index: %d", index];
 	CGPoint barCenter = [self.graphView centerOfBarAtIndex:index];
+	CGFloat barHeight = [self.graphView heightForBarAtIndex:index];
+
 	barCenter.x = barCenter.x + self.graphView.frame.origin.x;
-	[UIView animateWithDuration:0.1 animations:^{
+	barCenter.y = barCenter.y + 10.0f;
+
+	CGPoint labelCenter = CGPointMake(barCenter.x, barCenter.y - barHeight - 25.0f);
+	self.valueLabel.center = labelCenter;
+	self.valueLabel.text = [NSString stringWithFormat:@"%d", [[self.barValues objectAtIndex:index] integerValue]];
+
+	[UIView animateWithDuration:0.1f animations:^{
+		self.arrowLabel.alpha = 1.0f;
 		self.arrowLabel.center = barCenter;
+		self.valueLabel.alpha = 1.0f;
+	}];
+	[UIView animateWithDuration:0.3f delay:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+		self.valueLabel.alpha = 0.0f;
+	} completion:^(BOOL finished) {
 	}];
 }
 
