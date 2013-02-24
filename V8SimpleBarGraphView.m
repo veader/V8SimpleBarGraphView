@@ -18,6 +18,7 @@
 @property (nonatomic, assign) CGFloat barWidth;
 
 @property (nonatomic, assign) BOOL barCountDetermined;
+@property (nonatomic, assign) BOOL gatheringData;
 
 @property (nonatomic, strong) UITouch *trackedTouch;
 
@@ -114,18 +115,22 @@
 }
 
 - (void)collectData {
-	self.barCountDetermined = NO;
-	
-	if (!self.barValues) {
-		self.barValues = [NSMutableArray array];
+	if (!self.gatheringData) {
+		self.gatheringData = YES;
+		self.barCountDetermined = NO;
+		
+		if (!self.barValues) {
+			self.barValues = [NSMutableArray array];
+		}
+		
+		[self getNumberOfBarsFromDataSource];
+		[self getBarValuesFromDataSource];
+		[self determineMaximumBarValue];
+				
+		self.barCountDetermined = YES;
+		self.gatheringData = NO;
+		[self setNeedsLayout];
 	}
-	
-	[self getNumberOfBarsFromDataSource];
-	[self getBarValuesFromDataSource];
-	[self determineMaximumBarValue];
-	
-	self.barCountDetermined = YES;
-	[self setNeedsLayout];
 }
 
 // return the tag for the bar at a given index
@@ -140,6 +145,7 @@
 	self.barValues = [NSMutableArray array];
 	
 	self.barCountDetermined = NO;
+	self.gatheringData = NO;
 	
 	self.paddingBetweenBars = 2.0f;
 	self.paddingTop = 5.0f;
