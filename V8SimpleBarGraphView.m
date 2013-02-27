@@ -62,7 +62,7 @@
 
 	// find or create subviews for each bar
 	UIView *viewForIndex = nil;
-	for (int i = 0; i < [self.barValues count]; i++) {
+	for (int i = 0; i < self.numberOfBars; i++) {
 		viewForIndex = [self viewWithTag:[self tagForBarAtIndex:i]];
 		if (!viewForIndex) {
 			// bar should grow entire height, set height back to 0
@@ -79,7 +79,7 @@
 						options:UIViewAnimationOptionCurveEaseInOut
 					 animations:^{
 						 UIView *barView = nil;
-						 for (int i = 0; i < [self.barValues count]; i++) {
+						 for (int i = 0; i < self.numberOfBars; i++) {
 							 barView = [self viewWithTag:[self tagForBarAtIndex:i]];
 							 if (barView) {
 								 barView.frame = [self frameForBarAtIndex:i];
@@ -170,11 +170,12 @@
 
 - (void)getBarValuesFromDataSource {
 	if (self.dataSource) {
-		[self.barValues removeAllObjects];
+		NSMutableArray *tempValues = [NSMutableArray array];
 		for (int i = 0; i < self.numberOfBars; i++) {
 			NSInteger barValue = [self.dataSource valueOfItemInSimpleGraphView:self atIndex:i];
-			[self.barValues addObject:[NSNumber numberWithInteger:barValue]];
+			[tempValues addObject:[NSNumber numberWithInteger:barValue]];
 		}
+		self.barValues = tempValues;
 	}
 }
 
@@ -212,6 +213,8 @@
 		CGFloat spaceBetweenBars = (self.numberOfBars - 1) * self.paddingBetweenBars;
 		CGFloat padding = self.paddingLeft + self.paddingRight;
 		self.barWidth = floor((self.bounds.size.width - padding - spaceBetweenBars) / self.numberOfBars);
+		// TODO: notify if width is too small
+		//		- truncate number of bars shown
 	} else {
 		self.barWidth = 0.0f;
 	}
@@ -277,7 +280,7 @@
 	NSInteger index = -1;
 	UIView *barView = nil;
 	CGRect barFrame = CGRectZero;
-	for (int i = 0; i < [self.barValues count]; i++) {
+	for (int i = 0; i < self.numberOfBars; i++) {
 		barView = [self viewWithTag:[self tagForBarAtIndex:i]];
 		if (barView) {
 			// create slice of entire view so it's easier to scrub across graph
@@ -295,51 +298,35 @@
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//	NSLog(@"TOUCH: Began %d", [touches count]);
 	if (!self.trackedTouch && [touches count] > 0) {
-//		NSLog(@"\tStart tracking touch");
 		// only bother to start tracking, if we're not already tracking
 		self.trackedTouch = [[touches allObjects] objectAtIndex:0];
 		[self handleTouchEvent];
-	} else {
-//		NSLog(@"\tAlready tracking touch");
 	}
 	[super touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-//	NSLog(@"TOUCH: Move... %d", [touches count]);
 	if (self.trackedTouch && [touches containsObject:self.trackedTouch]) {
-//		NSLog(@"\tHas our touch...");
 		[self handleTouchEvent];
-	} else {
-//		NSLog(@"\tDifferent touch");
 	}
 	[super touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-//	NSLog(@"TOUCH: Cancel %d", [touches count]);
 	if (self.trackedTouch && [touches containsObject:self.trackedTouch]) {
-//		NSLog(@"\tCancel our touch");
 		self.trackedTouch = nil;
 		[self handleTouchEvent];
-	} else {
-//		NSLog(@"\tNOT our touch");
 	}
 	[super touchesCancelled:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//	NSLog(@"TOUCH: End %d", [touches count]);
 	if (self.trackedTouch && [touches containsObject:self.trackedTouch]) {
-//		NSLog(@"\tEnd our touch");
 		self.trackedTouch = nil;
 		// TODO: handle tap?
 		[self handleTouchEvent];
-	} else {
-//		NSLog(@"\tNOT our touch");
-		}
+	}
 	[super touchesEnded:touches withEvent:event];
 }
 
