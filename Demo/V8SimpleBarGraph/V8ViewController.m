@@ -9,6 +9,7 @@
 #import "V8ViewController.h"
 
 @interface V8ViewController ()
+@property (nonatomic, strong) NSTimer *animationTimer;
 @end
 
 @implementation V8ViewController
@@ -20,8 +21,6 @@
 	[self.graphView reloadData];
 	self.graphView.backgroundColor = [UIColor lightGrayColor];
 	self.graphView.selectedBarColor = [UIColor yellowColor];
-
-	[NSTimer scheduledTimerWithTimeInterval:4.0f target:self selector:@selector(shuffleAndReload) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,6 +35,19 @@
 	[newArray insertObject:last atIndex:0];
 	self.barValues = newArray;
 	[self.graphView reloadData];
+}
+
+- (IBAction)animateButtonTapped:(id)sender {
+	if (self.animationTimer) {
+		// stop timer
+		[self.animationTimer invalidate];
+		self.animationTimer = nil;
+		[self.animateButton setTitle:@"Animate" forState:UIControlStateNormal];
+	} else {
+		// start timer
+		self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(shuffleAndReload) userInfo:nil repeats:YES];
+		[self.animateButton setTitle:@"Stop" forState:UIControlStateNormal];
+	}
 }
 
 #pragma mark - DataSource Methods

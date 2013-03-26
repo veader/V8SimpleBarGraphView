@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -41,10 +41,26 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kMt-O4-QDe">
+                                <rect key="frame" x="118" y="335" width="84" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Animate">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="animateButtonTapped:" destination="2" eventType="touchUpInside" id="J4f-HS-VvD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="animateButton" destination="kMt-O4-QDe" id="p8Y-xT-YuX"/>
                         <outlet property="arrowLabel" destination="9qL-Xw-s1x" id="SPF-J6-WAv"/>
                         <outlet property="graphView" destination="vJh-xX-EN7" id="9dA-Zf-diu"/>
                         <outlet property="indexLabel" destination="hJt-qu-Nku" id="prB-Gv-wEl"/>
@@ -66,6 +82,8 @@
         <class className="V8ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/V8ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="animateButtonTapped:"/>
+                <relationship kind="outlet" name="animateButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="arrowLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="graphView" candidateClass="V8SimpleBarGraphView"/>
                 <relationship kind="outlet" name="indexLabel" candidateClass="UILabel"/>
