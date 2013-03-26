@@ -223,9 +223,14 @@
 - (CGFloat)heightForBarAtIndex:(NSUInteger)index {
 	if ([self.barValues count] > index && self.maxBarValue > 0) {
 		NSInteger value = [[self.barValues objectAtIndex:index] integerValue];
-		CGFloat percentage = (float)value / (float)self.maxBarValue;
-		CGFloat padding = self.paddingTop + self.paddingBottom;
-		return floor((self.bounds.size.height - padding) * percentage);
+		if (value > 0) {
+			CGFloat percentage = (float)value / (float)self.maxBarValue;
+			CGFloat padding = self.paddingTop + self.paddingBottom;
+			CGFloat barHeight = floor((self.bounds.size.height - padding) * percentage);
+			return fmaxf(barHeight, 1.0f); // values > 0 should at least show as a line
+		} else {
+			return 0.0f;
+		}
 	} else {
 		return 0.0f;
 	}
