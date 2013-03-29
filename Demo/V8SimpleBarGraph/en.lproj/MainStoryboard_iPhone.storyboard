@@ -42,7 +42,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kMt-O4-QDe">
-                                <rect key="frame" x="118" y="335" width="84" height="44"/>
+                                <rect key="frame" x="90" y="336" width="140" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Animate">
@@ -56,6 +56,21 @@
                                     <action selector="animateButtonTapped:" destination="2" eventType="touchUpInside" id="J4f-HS-VvD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fdL-zo-379">
+                                <rect key="frame" x="90" y="387" width="140" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Select Index 1">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="setSelectedIndexButtonTapped:" destination="2" eventType="touchUpInside" id="g1S-tv-097"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -64,6 +79,7 @@
                         <outlet property="arrowLabel" destination="9qL-Xw-s1x" id="SPF-J6-WAv"/>
                         <outlet property="graphView" destination="vJh-xX-EN7" id="9dA-Zf-diu"/>
                         <outlet property="indexLabel" destination="hJt-qu-Nku" id="prB-Gv-wEl"/>
+                        <outlet property="setIndexButton" destination="fdL-zo-379" id="dXA-aP-Kv6"/>
                         <outlet property="valueLabel" destination="VsD-Md-FFP" id="zKD-N3-SNY"/>
                     </connections>
                 </viewController>
@@ -83,10 +99,12 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/V8ViewController.h"/>
             <relationships>
                 <relationship kind="action" name="animateButtonTapped:"/>
+                <relationship kind="action" name="setSelectedIndexButtonTapped:"/>
                 <relationship kind="outlet" name="animateButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="arrowLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="graphView" candidateClass="V8SimpleBarGraphView"/>
                 <relationship kind="outlet" name="indexLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="setIndexButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="valueLabel" candidateClass="UILabel"/>
             </relationships>
         </class>

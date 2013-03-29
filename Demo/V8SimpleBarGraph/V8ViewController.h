@@ -16,10 +16,12 @@
 @property (nonatomic, strong) NSArray *barValues;
 @property (nonatomic, strong) IBOutlet V8SimpleBarGraphView *graphView;
 @property (nonatomic, strong) IBOutlet UIButton *animateButton;
+@property (nonatomic, strong) IBOutlet UIButton *setIndexButton;
 @property (nonatomic, strong) IBOutlet UILabel *indexLabel;
 @property (nonatomic, strong) IBOutlet UILabel *arrowLabel;
 @property (nonatomic, strong) IBOutlet UILabel *valueLabel;
 
 - (IBAction)animateButtonTapped:(id)sender;
+- (IBAction)setSelectedIndexButtonTapped:(id)sender;
 
 @end

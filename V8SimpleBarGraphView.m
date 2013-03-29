@@ -198,6 +198,26 @@
 	}
 }
 
+#pragma mark - Selection Methods
+- (void)selectIndex:(NSUInteger)index {
+	if (self.currentlySelectedIndex != index && index != -1 && self.numberOfBars > index) {
+		UIView *barView = nil;
+		NSInteger oldIndex = self.currentlySelectedIndex;
+		self.currentlySelectedIndex = index;
+		
+		if (oldIndex != -1) {
+			// set color back on previously touched bar
+			barView = [self viewWithTag:[self tagForBarAtIndex:oldIndex]];
+			barView.backgroundColor = [self getColorForBarAtIndex:oldIndex];
+		}
+		
+		// set selected color on current bar
+		barView = [self viewWithTag:[self tagForBarAtIndex:self.currentlySelectedIndex]];
+		barView.backgroundColor = [self getColorForBarAtIndex:self.currentlySelectedIndex];
+		
+		[self notifyDelegateOfTouchAtIndex:self.currentlySelectedIndex];
+	}
+}
 
 #pragma mark - Calculation Methods
 - (void)determineMaximumBarValue {
@@ -260,23 +280,7 @@
 	if (self.trackedTouch) {
 		CGPoint location = [self.trackedTouch locationInView:self];
 		NSInteger touchedIndex = [self determineIndexOfBarUnderPoint:location];
-		if (self.currentlySelectedIndex != touchedIndex && touchedIndex != -1) {
-			UIView *barView = nil;
-			NSInteger oldIndex = self.currentlySelectedIndex;
-			self.currentlySelectedIndex = touchedIndex;
-
-			if (oldIndex != -1) {
-				// set color back on previously touched bar
-				barView = [self viewWithTag:[self tagForBarAtIndex:oldIndex]];
-				barView.backgroundColor = [self getColorForBarAtIndex:oldIndex];
-			}
-
-			// set selected color on current bar
-			barView = [self viewWithTag:[self tagForBarAtIndex:self.currentlySelectedIndex]];
-			barView.backgroundColor = [self getColorForBarAtIndex:self.currentlySelectedIndex];
-
-			[self notifyDelegateOfTouchAtIndex:self.currentlySelectedIndex];
-		}
+		[self selectIndex:touchedIndex];
 	}
 	[self setNeedsDisplay];
 }

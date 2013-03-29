@@ -50,6 +50,10 @@
 	}
 }
 
+- (IBAction)setSelectedIndexButtonTapped:(id)sender {
+	[self.graphView selectIndex:1];
+}
+
 #pragma mark - DataSource Methods
 - (NSUInteger)numberOfItemsInSimpleGraphView:(V8SimpleBarGraphView *)graphView {
 	return [self.barValues count];
