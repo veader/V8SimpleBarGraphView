@@ -70,7 +70,7 @@
 			[viewForIndex setTag:[self tagForBarAtIndex:i]];
 			[self addSubview:viewForIndex];
 		}
-		viewForIndex.backgroundColor = [self getColorForBarAtIndex:i];
+		viewForIndex.backgroundColor = [self colorForBarAtIndex:i];
 	}
 
 	// now animate the bars to proper height
@@ -180,7 +180,7 @@
 }
 
 #pragma mark - Delegate Methods
-- (UIColor *)getColorForBarAtIndex:(NSUInteger)index {
+- (UIColor *)colorForBarAtIndex:(NSUInteger)index {
 	if (self.delegate && [self.delegate respondsToSelector:@selector(colorForBarInSimpleGraphView:atIndex:)]) {
 		return [self.delegate colorForBarInSimpleGraphView:self atIndex:index];
 	}
@@ -208,12 +208,12 @@
 		if (oldIndex != -1) {
 			// set color back on previously touched bar
 			barView = [self viewWithTag:[self tagForBarAtIndex:oldIndex]];
-			barView.backgroundColor = [self getColorForBarAtIndex:oldIndex];
+			barView.backgroundColor = [self colorForBarAtIndex:oldIndex];
 		}
 		
 		// set selected color on current bar
 		barView = [self viewWithTag:[self tagForBarAtIndex:self.currentlySelectedIndex]];
-		barView.backgroundColor = [self getColorForBarAtIndex:self.currentlySelectedIndex];
+		barView.backgroundColor = [self colorForBarAtIndex:self.currentlySelectedIndex];
 		
 		[self notifyDelegateOfTouchAtIndex:self.currentlySelectedIndex];
 	}
